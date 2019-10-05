@@ -6,9 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.solent.com504.factoryandfacade.model.Animal;
-import org.solent.com504.factoryandfacade.model.AnimalObjectFactory;
-import org.solent.com504.factoryandfacade.model.FarmFacade;
+import org.solent.com504.factoryandfacade.model.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -47,12 +45,14 @@ public class FarmFacadeTest {
         farmFacade.addCat("Pippa");
         farmFacade.addDog("Lehrer");
         farmFacade.addCow("Mootilda");
+        farmFacade.addDuck("Psy");
         
         animalList = farmFacade.getAllAnimals();
         
         assertEquals(animalList.get(0).getName(),"Pippa");
         assertEquals(animalList.get(1).getName(),"Lehrer");
         assertEquals(animalList.get(2).getName(),"Mootilda");
+        assertEquals(animalList.get(3).getName(),"Psy");
     }
     
     @Test

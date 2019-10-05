@@ -1,4 +1,4 @@
-package org.solent.com504.factoryandfacade.model;
+package org.solent.com504.factoryandfacade.model_beforeDuck;
 
 import java.util.List;
 
@@ -11,6 +11,4 @@ public interface FarmFacade {
     public void addCat(String name);
 
     public void addCow(String name);
-    
-    public void addDuck(String name);
 }

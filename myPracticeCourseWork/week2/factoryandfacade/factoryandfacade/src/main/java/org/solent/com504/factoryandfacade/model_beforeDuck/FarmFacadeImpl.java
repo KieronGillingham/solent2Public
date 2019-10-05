@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.factoryandfacade.model;
+package org.solent.com504.factoryandfacade.model_beforeDuck;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -40,12 +40,5 @@ public class FarmFacadeImpl implements FarmFacade {
         Cow cow = (Cow) AnimalObjectFactory.createCow();
         cow.setName(name);
         allAnimals.add(cow);
-    }
-    
-    @Override
-    public void addDuck(String name) {
-        Duck duck = (Duck) AnimalObjectFactory.createDuck();
-        duck.setName(name);
-        allAnimals.add(duck);
     }
 }

@@ -1,4 +1,4 @@
-package org.solent.com504.factoryandfacade.model;
+package org.solent.com504.factoryandfacade.model_beforeDuck;
 
 public class AnimalObjectFactory{
 
@@ -14,10 +14,6 @@ public class AnimalObjectFactory{
         return new Cow();
     }   
 
-    public static Animal createDuck() {
-        return new Duck();
-    }
-    
     public static FarmFacade createFarmFacade() {
         return new FarmFacadeImpl();
     }

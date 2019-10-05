@@ -7,8 +7,7 @@ package org.solent.com504.factoryandfacade.test;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.solent.com504.factoryandfacade.model.Animal;
-import org.solent.com504.factoryandfacade.model.AnimalObjectFactory;
+import org.solent.com504.factoryandfacade.model.*;
 
 /**
  *
@@ -49,6 +48,18 @@ public class AnimalObjectFactoryTest {
         System.out.println(sound);
 
         assertEquals("Moo", sound);
+
+    }
+    
+    @Test
+    public void testCreateDuck() {
+        Animal animal = AnimalObjectFactory.createDuck();
+
+        String sound = animal.getSound();
+
+        System.out.println(sound);
+
+        assertEquals("Quack", sound);
 
     }
 }
