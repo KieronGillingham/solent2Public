@@ -19,15 +19,31 @@ import java.util.ArrayList;
  */
 public class FarmFacadeTest {
 
+    FarmFacade farmFacade;
+    List<Animal> animalList;
+    
+    @Before
+    public void CreateFarmFacade()
+    {
+        farmFacade = AnimalObjectFactory.createFarmFacade();
+        animalList = farmFacade.getAllAnimals();
+    }
+    
     @Test
-    public void FarmFacadeTest() {
-
-        FarmFacade farmFacade = AnimalObjectFactory.createFarmFacade();
+    public void InitialiseListTest()
+    {
+        farmFacade = AnimalObjectFactory.createFarmFacade();
+        // Check FarmFacade has been created
         assertNotNull(farmFacade);
         
-        List<Animal> animalList = farmFacade.getAllAnimals();
+        // Check list of animals is initially empty
+        animalList = farmFacade.getAllAnimals();
         assertTrue(animalList.isEmpty());
-         
+    }
+    
+    @Test
+    public void AddAnimalsTest() {
+
         farmFacade.addCat("Pippa");
         farmFacade.addDog("Lehrer");
         farmFacade.addCow("Mootilda");
@@ -38,4 +54,17 @@ public class FarmFacadeTest {
         assertEquals(animalList.get(1).getName(),"Lehrer");
         assertEquals(animalList.get(2).getName(),"Mootilda");
     }
+    
+    @Test
+    public void AddAnimalsTest2() {
+
+        farmFacade.addCat("Fido");
+        
+        animalList = farmFacade.getAllAnimals();
+        
+        assertNotEquals(animalList.get(0).getName(),"A cat name");
+    }
+    
+
+    
 }

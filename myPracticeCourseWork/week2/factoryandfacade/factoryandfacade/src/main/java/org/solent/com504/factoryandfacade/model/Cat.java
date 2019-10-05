@@ -14,7 +14,6 @@ public class Cat implements Animal {
         return name;
     }
     
-
     @Override
     public String getSound() {
         return "Meoww";

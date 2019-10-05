@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author 4gillk91
  */
-public class FarmFacadeImpl implements FarmFacade{
+public class FarmFacadeImpl implements FarmFacade {
 
     private List<Animal> allAnimals = new ArrayList<>();
     
@@ -22,23 +22,23 @@ public class FarmFacadeImpl implements FarmFacade{
     }
 
     @Override
-    public void addDog(String name){
-        Dog d = (Dog) AnimalObjectFactory.createDog();
-        d.setName(name);
-        allAnimals.add(d);
+    public void addDog(String name) {
+        Dog dog = (Dog) AnimalObjectFactory.createDog();
+        dog.setName(name);
+        allAnimals.add(dog);
     }
 
     @Override
     public void addCat(String name) {
-        Cat c = (Cat) AnimalObjectFactory.createCat();
-        c.setName(name);
-        allAnimals.add(c);
+        Cat cat = (Cat) AnimalObjectFactory.createCat();
+        cat.setName(name);
+        allAnimals.add(cat);
     }
 
     @Override
     public void addCow(String name) {
-        Cow c = (Cow) AnimalObjectFactory.createCow();
-        c.setName(name);
-        allAnimals.add(c);
+        Cow cow = (Cow) AnimalObjectFactory.createCow();
+        cow.setName(name);
+        allAnimals.add(cow);
     }
 }
