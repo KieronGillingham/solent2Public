@@ -14,21 +14,28 @@ import org.solent.com504.factoryandfacade.model.FarmFacade;
  * @author cgallen
  */
 public class FarmFacadeSpringImpl implements FarmFacade {
-
+    @Override
     public List<Animal> getAllAnimals() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
-
+    
+    @Override
     public void addDog(String name) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
-
+    
+    @Override
     public void addCat(String name) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
-
+    
+    @Override
     public void addCow(String name) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
-    
+
+    @Override
+    public void addDuck(String name) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -83,6 +83,31 @@ public class AnimalObjectFactorySpringTest {
     }
 
     @Test
+    public void testCreateDuck() {
+        Animal animal1 = AnimalObjectFactorySpringImpl.createDuck();
+        assertNotNull(animal1);
+
+        String sound = animal1.getSound();
+
+        System.out.println(sound);
+
+        assertEquals("Quack", sound);
+
+        animal1.setName("daffy");
+
+        Animal animal2 = AnimalObjectFactorySpringImpl.createDuck();
+        assertNotNull(animal2);
+
+        animal2.setName("donald");
+
+        assertNotEquals(animal1, animal2);
+
+        assertNotEquals(animal1.getName(), animal2.getName());
+        System.out.println("animal1.getName()=" + animal1.getName()
+                + " animal2.getName()=" + animal2.getName());
+    }
+    
+    @Test
     public void testCreateFarmFacade() {
         FarmFacade farmFacade1 = AnimalObjectFactorySpringImpl.getFarmFacade();
         assertNotNull(farmFacade1);

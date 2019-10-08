@@ -4,6 +4,7 @@ import org.solent.com504.factoryandfacade.model.Animal;
 import org.solent.com504.factoryandfacade.model.Cat;
 import org.solent.com504.factoryandfacade.model.Cow;
 import org.solent.com504.factoryandfacade.model.Dog;
+import org.solent.com504.factoryandfacade.model.Duck;
 import org.solent.com504.factoryandfacade.model.FarmFacade;
 
 import org.springframework.context.ApplicationContext;
@@ -34,6 +35,12 @@ public class AnimalObjectFactorySpringImpl {
         return cow;
     }
 
+    public static Animal createDuck() {
+        // nb Cat is a prototype bean - a new one is created on every call to the context
+        Duck duck = (Duck) context.getBean("duck");
+        return duck;
+    }
+    
     public static FarmFacade getFarmFacade() {
         // nb farmFacade is a singleton bean - there is only ever one and this gets the facade
         FarmFacade farmFacade = (FarmFacade) context.getBean("farmFacade");
