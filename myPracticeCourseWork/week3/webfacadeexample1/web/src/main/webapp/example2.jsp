@@ -28,11 +28,13 @@
 
     List<String> supportedAnimalTypes = (List<String>) session.getAttribute("supportedAnimalTypes");
 
-    String animalTypeStr = request.getParameter("animalType");
-    String animalNameStr = request.getParameter("animalName");
+    String animalTypeStr = request.getParameter("animal_type");
+    String animalNameStr = request.getParameter("animal_name");
     
     if (animalTypeStr != null || animalNameStr != null)
-    {}
+    {
+        farmFacade.addAnimal(animalTypeStr, animalNameStr);
+    }
 %>
 
 <html>
@@ -41,30 +43,24 @@
         <title>JSP Page Farm</title>
     </head>
     <body>
-        <p>Page for Farm</p>
-        <p>Supported Animal Types</p>
-        <table>
-            <% for (String animalType : supportedAnimalTypes) {%>
-            <tr>
-                <td><%=animalType%></td>
-            </tr>
+        <h1>Page for Farm</h1>
             <%
-                }
                 //Hard-coded animal instances
                 //farmFacade.addAnimal("Cat", "Susan");
                 //farmFacade.addAnimal("Dog", "Peter");
                 //farmFacade.addAnimal("Cow", "Dave");
             %>
-        </table> 
+        <form>
+            <label> Animal name: </label>
+            <input name="animal_name" type="text">
         
-        <input type="text">
-        
-        <select name="dropdown_AnimalType">
-        <% for (String animalType : supportedAnimalTypes) {%>
-            <option><%=animalType%></option>
-        <%}  %>
-        </select>
-        <button onClick="">Add</button>
+            <select name="animal_type">
+            <% for (String animalType : supportedAnimalTypes) {%>
+                <option><%=animalType%></option>
+            <%}  %>
+            </select>
+            <button>Add</button>
+        </form>
         <h2>Animals on Farm</h2>
         <table>
             <tr>
