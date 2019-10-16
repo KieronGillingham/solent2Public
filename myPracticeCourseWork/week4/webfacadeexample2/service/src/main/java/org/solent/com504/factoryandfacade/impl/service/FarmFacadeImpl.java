@@ -1,5 +1,6 @@
 package org.solent.com504.factoryandfacade.impl.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.solent.com504.factoryandfacade.model.dao.AnimalDao;
 import org.solent.com504.factoryandfacade.model.dao.AnimalTypeDao;
@@ -24,31 +25,45 @@ public class FarmFacadeImpl implements FarmFacade {
     // Farm facade methods
     @Override
     public List<Animal> getAllAnimals() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return animalDao.retrieveAll();
     }
 
     @Override
     public Animal addAnimal(String animalType, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Animal animal = animalDao.create(animalTypeDao.getAnimalType(animalType));
+        animal.setName(name);
+        animalDao.updateOrSave(animal);
+        return animal;
     }
 
     @Override
     public List<Animal> getAnimalsOfType(String animalType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Animal template = animalDao.create(animalTypeDao.getAnimalType(animalType));
+        return animalDao.retrieve(template);
     }
 
     @Override
     public Animal getAnimal(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Animal template = animalDao.create(null);
+        template.setName(name);
+        return animalDao.retrieve(template).get(0);
     }
 
     @Override
     public boolean removeAnimal(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Animal animalToDelete = getAnimal(name);
+        if (animalToDelete != null) {
+            return animalDao.delete(animalToDelete.getId());
+        }
+        return false;
     }
 
     @Override
     public List<String> getSupportedAnimalTypes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> stringList = new ArrayList<>();
+        animalTypeDao.getSupportedAnimalTypes().forEach((type) -> {
+            stringList.add(type.toString());
+        });              
+        return stringList;
     }
 }
