@@ -22,6 +22,7 @@ public class ServiceObjectFactoryImpl implements ServiceObjectFactory {
         farmFacade.setAnimalTypeDao(animalTypeDao);
     }
 
+    @Override
     public FarmFacade getFarmFacade() {
          return farmFacade;
     }
