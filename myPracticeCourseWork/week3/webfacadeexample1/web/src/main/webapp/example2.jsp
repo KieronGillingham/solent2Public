@@ -59,7 +59,7 @@
                 <option><%=animalType%></option>
             <%}  %>
             </select>
-            <button>Add</button>
+            <button type="submit">Add</button>
         </form>
         <h2>Animals on Farm</h2>
         <table>
