@@ -62,7 +62,7 @@ public class FarmFacadeImpl implements FarmFacade {
     public List<String> getSupportedAnimalTypes() {
         List<String> stringList = new ArrayList<>();
         animalTypeDao.getSupportedAnimalTypes().forEach((type) -> {
-            stringList.add(type.toString());
+            stringList.add(type.getType());
         });              
         return stringList;
     }

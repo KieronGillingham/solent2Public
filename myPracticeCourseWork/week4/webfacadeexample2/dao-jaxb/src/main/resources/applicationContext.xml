@@ -24,7 +24,7 @@
             <list>
                 <value>Cat</value>
                 <value>Cow</value>
-                <value>Dog</value>              
+                <value>Dog</value>            
             </list>
         </constructor-arg>
     </bean>
