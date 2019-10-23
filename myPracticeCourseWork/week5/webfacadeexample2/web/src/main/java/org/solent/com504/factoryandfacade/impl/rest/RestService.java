@@ -9,6 +9,7 @@ package org.solent.com504.factoryandfacade.impl.rest;
  *
  * @author gallenc
  */
+import java.util.Arrays;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -22,6 +23,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com504.factoryandfacade.impl.web.WebObjectFactory;
 import org.solent.com504.factoryandfacade.model.dto.Animal;
+import org.solent.com504.factoryandfacade.model.dto.AnimalList;
 import org.solent.com504.factoryandfacade.model.dto.ReplyMessage;
 import org.solent.com504.factoryandfacade.model.service.FarmFacade;
 
@@ -149,12 +151,13 @@ public class RestService {
 
             FarmFacade serviceFacade = WebObjectFactory.getServiceFacade();
             ReplyMessage replyMessage = new ReplyMessage();
+            
+            AnimalList animalList = new AnimalList();
+            animalList.setAnimals(serviceFacade.getAnimalsOfType(animalType));
+            replyMessage.setAnimalList(animalList);
 
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-
-            //replyMessage.setCode(Response.Status.OK.getStatusCode());
-            //return Response.status(Response.Status.OK).entity(replyMessage).build();
+            replyMessage.setCode(Response.Status.OK.getStatusCode());
+            return Response.status(Response.Status.OK).entity(replyMessage).build();
         } catch (Exception ex) {
             LOG.error("error calling /getAnimalsOfType ", ex);
             ReplyMessage replyMessage = new ReplyMessage();
@@ -182,11 +185,12 @@ public class RestService {
             FarmFacade serviceFacade = WebObjectFactory.getServiceFacade();
             ReplyMessage replyMessage = new ReplyMessage();
 
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            AnimalList animalList = new AnimalList();
+            animalList.setAnimals(Arrays.asList(serviceFacade.getAnimal(animalName)));
+            replyMessage.setAnimalList(animalList);
 
-
-            //replyMessage.setCode(Response.Status.OK.getStatusCode());
-            //return Response.status(Response.Status.OK).entity(replyMessage).build();
+            replyMessage.setCode(Response.Status.OK.getStatusCode());
+            return Response.status(Response.Status.OK).entity(replyMessage).build();
         } catch (Exception ex) {
             LOG.error("error calling /getAnimal ", ex);
             ReplyMessage replyMessage = new ReplyMessage();
@@ -216,10 +220,18 @@ public class RestService {
             FarmFacade serviceFacade = WebObjectFactory.getServiceFacade();
             ReplyMessage replyMessage = new ReplyMessage();
 
-            throw new UnsupportedOperationException("Not supported yet.");
-
-            //replyMessage.setCode(Response.Status.OK.getStatusCode());
-            //return Response.status(Response.Status.OK).entity(replyMessage).build();
+            if (serviceFacade.removeAnimal(animalName))
+            {
+                replyMessage.setDebugMessage("Animal removed.");
+                replyMessage.setCode(Response.Status.OK.getStatusCode());
+            }
+            else
+            {
+                replyMessage.setDebugMessage("Animal could not be removed.");
+                replyMessage.setCode(Response.Status.NO_CONTENT.getStatusCode());
+            }
+            
+            return Response.status(Response.Status.OK).entity(replyMessage).build();
         } catch (Exception ex) {
             LOG.error("error calling /removeAnimal ", ex);
             ReplyMessage replyMessage = new ReplyMessage();
