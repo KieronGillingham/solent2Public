@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.util.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class RestClientFarmFacadeTest {
         for (Animal value : animals) {
             msg = msg + value + ",";
         }
-
+        LOG.debug(msg);
         LOG.debug("end of testGetAllAnimals()");
     }
 
@@ -76,7 +77,8 @@ public class RestClientFarmFacadeTest {
         }
         LOG.debug("end of testGetAnimalsOfType()");
     }
-
+    
+    // Own implementation
     @Test
     public void testGetAnimal() {
         LOG.debug("testGetAnimal()");
@@ -89,9 +91,24 @@ public class RestClientFarmFacadeTest {
         LOG.debug("end of testGetAnimal()");
     }
 
+    // Own implementation
     @Test
     public void testRemoveAnimal() {
-        fail("test not written");
+        LOG.debug("testRemoveAnimal()");
+
+        farmFacade.addAnimal("Cat", "randomName_1");
+        farmFacade.addAnimal("Dog", "randomName_2");
+        farmFacade.addAnimal("Cow", "randomName_3");
+        
+        LOG.debug("inital animals : " + farmFacade.getAllAnimals());
+        
+        farmFacade.removeAnimal("randomName_1");
+        farmFacade.removeAnimal("randomName_2");
+        farmFacade.removeAnimal("randomName_3");
+        
+        LOG.debug("returned : " + farmFacade.getAllAnimals());
+        
+        LOG.debug("end of testGetAnimal()");
     }
 
     @Test

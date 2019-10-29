@@ -33,7 +33,8 @@ import org.solent.com504.factoryandfacade.model.service.FarmFacade;
  * with each reply. All replies will contain a code and a debug message.
  * Possible replies are: List<String> replyMessage.getStringList() AnimalList
  * replyMessage.getAnimalList() int replyMessage.getCode()
- * replyMessage.getDebugMessage(); * @author cgallen
+ * replyMessage.getDebugMessage();
+ * @author cgallen
  */
 @Path("/farmService")
 public class RestService {

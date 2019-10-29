@@ -32,12 +32,12 @@ public class ModelJaxbTest {
 
         try {
 
-            // test file we will write and read. 
-            // Note in target folder so that will be deleted on each run and will not be saved to git
+            // Test file that we will write to and read from.
+            // Note that this is in the target folder so that it will be deleted on each run and will not be saved to git.
             File file = new File("target/testTransactionData.xml");
             System.out.println("writing test file to " + file.getAbsolutePath());
 
-            // this contains a list of Jaxb annotated classes for the context to parse
+            // This contains a list of Jaxb annotated classes for the context to parse.
             // NOTE you must also have a jaxb.index or ObjectFactory in the same classpath
             JAXBContext jaxbContext = JAXBContext.newInstance("org.solent.com504.factoryandfacade.model.dto");
 

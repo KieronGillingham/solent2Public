@@ -107,20 +107,15 @@ public class FarmRestClientImpl implements FarmFacade {
         LOG.debug("client getAnimalsOfType Called animalType=" + animalType);
 
         Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
-        WebTarget webTarget = client.target(baseUrl).path("getAnimalsOfType");
         
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-        formData.add("animalType", animalType);
-
+        WebTarget webTarget = client.target(baseUrl).path("getAnimalsOfType").queryParam("animalType", animalType);
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
-        Response response = invocationBuilder.post(Entity.form(formData));
-        //Response response = invocationBuilder.get();
+        Response response = invocationBuilder.get();
 
         ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
         LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
 
-        List<Animal> animalList = replyMessage.getAnimalList().getAnimals();
-        return animalList;
+        return replyMessage.getAnimalList().getAnimals();
     }
 
     @Override
@@ -128,13 +123,10 @@ public class FarmRestClientImpl implements FarmFacade {
         LOG.debug("client getAnimal Called  animalName=" + animalName);
 
         Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
-        WebTarget webTarget = client.target(baseUrl).path("getAnimal");
         
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-        formData.add("animalName", animalName);
-
+        WebTarget webTarget = client.target(baseUrl).path("getAnimal").queryParam("animalName", animalName);
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
-        Response response = invocationBuilder.post(Entity.form(formData));
+        Response response = invocationBuilder.get();
 
         ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
         LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
@@ -150,13 +142,10 @@ public class FarmRestClientImpl implements FarmFacade {
         LOG.debug("client removeAnimal Called animalName=" + animalName);
 
         Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
-        WebTarget webTarget = client.target(baseUrl).path("removeAnimal");
         
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-        formData.add("animalName", animalName);
-
+        WebTarget webTarget = client.target(baseUrl).path("getAnimal").queryParam("animalName", animalName);
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
-        Response response = invocationBuilder.post(Entity.form(formData));
+        Response response = invocationBuilder.get();
 
         ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
         LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
