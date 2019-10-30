@@ -100,22 +100,57 @@ public class FarmRestClientImpl implements FarmFacade {
         return supportedAnimalTypes;
     }
 
+    
+    // Own implementations
     @Override
     public List<Animal> getAnimalsOfType(String animalType) {
         LOG.debug("client getAnimalsOfType Called animalType=" + animalType);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
+        
+        WebTarget webTarget = client.target(baseUrl).path("getAnimalsOfType").queryParam("animalType", animalType);
+        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
+        Response response = invocationBuilder.get();
+
+        ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
+        LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
+
+        return replyMessage.getAnimalList().getAnimals();
     }
 
     @Override
     public Animal getAnimal(String animalName) {
         LOG.debug("client getAnimal Called  animalName=" + animalName);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
+        
+        WebTarget webTarget = client.target(baseUrl).path("getAnimal").queryParam("animalName", animalName);
+        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
+        Response response = invocationBuilder.get();
+
+        ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
+        LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
+
+        if (!replyMessage.getAnimalList().getAnimals().isEmpty()) {
+            return replyMessage.getAnimalList().getAnimals().get(0);
+        }
+        return null;
     }
 
     @Override
     public boolean removeAnimal(String animalName) {
         LOG.debug("client removeAnimal Called animalName=" + animalName);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
+        
+        WebTarget webTarget = client.target(baseUrl).path("getAnimal").queryParam("animalName", animalName);
+        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
+        Response response = invocationBuilder.get();
+
+        ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
+        LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
+
+        return replyMessage.getCode() != Response.Status.OK.getStatusCode();
     }
 
 }

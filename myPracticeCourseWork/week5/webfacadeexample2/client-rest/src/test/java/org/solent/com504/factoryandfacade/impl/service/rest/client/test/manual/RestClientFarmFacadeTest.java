@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.util.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class RestClientFarmFacadeTest {
         for (Animal value : animals) {
             msg = msg + value + ",";
         }
-
+        LOG.debug(msg);
         LOG.debug("end of testGetAllAnimals()");
     }
 
@@ -62,28 +63,63 @@ public class RestClientFarmFacadeTest {
 
     @Test
     public void testGetAnimalsOfType() {
-        fail("test not written");
+        LOG.debug("testGetAnimalsOfType()");
+        List<String> supportedAnimalTypes = farmFacade.getSupportedAnimalTypes();
+        
+        for (String type : supportedAnimalTypes) {
+            LOG.debug("type : " + type);
+            String msg = "returned :";
+            List<Animal> animals = farmFacade.getAnimalsOfType(type);
+            for (Animal animal : animals) {
+                msg = msg + animal.toString() + ",";
+            }
+            LOG.debug(msg);
+        }
+        LOG.debug("end of testGetAnimalsOfType()");
     }
-
+    
+    // Own implementation
     @Test
     public void testGetAnimal() {
-        fail("test not written");
+        LOG.debug("testGetAnimal()");
+        List<Animal> animals = farmFacade.getAllAnimals();
+        
+        for (Animal animal : animals) {
+            LOG.debug("name : " + animal.getName());
+            LOG.debug("returned :" + farmFacade.getAnimal(animal.getName()));
+        }
+        LOG.debug("end of testGetAnimal()");
     }
 
+    // Own implementation
     @Test
     public void testRemoveAnimal() {
-        fail("test not written");
+        LOG.debug("testRemoveAnimal()");
+
+        farmFacade.addAnimal("Cat", "randomName_1");
+        farmFacade.addAnimal("Dog", "randomName_2");
+        farmFacade.addAnimal("Cow", "randomName_3");
+        
+        LOG.debug("inital animals : " + farmFacade.getAllAnimals());
+        
+        farmFacade.removeAnimal("randomName_1");
+        farmFacade.removeAnimal("randomName_2");
+        farmFacade.removeAnimal("randomName_3");
+        
+        LOG.debug("returned : " + farmFacade.getAllAnimals());
+        
+        LOG.debug("end of testGetAnimal()");
     }
 
     @Test
     public void testGetSupportedAnimalTypes() {
-        LOG.debug("start of testGupportedAnimalTypes()");
+        LOG.debug("start of testSupportedAnimalTypes()");
         List<String> supportedAnimalTypes = farmFacade.getSupportedAnimalTypes();
         String msg = "returned :";
         for (String value : supportedAnimalTypes) {
             msg = msg + value + ",";
         }
         LOG.debug(msg);
-        LOG.debug("end of testGupportedAnimalTypes()");
+        LOG.debug("end of testSupportedAnimalTypes()");
     }
 }
