@@ -58,7 +58,6 @@ public class PersonDAOJpaImpl implements PersonDAO {
     }
 
     @Override
-    
     public Person delete(Person person) {
         entityManager.getTransaction().begin();
         entityManager.remove(person);
@@ -75,12 +74,19 @@ public class PersonDAOJpaImpl implements PersonDAO {
 
     @Override
     public List<Person> findByRole(Role role) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Person> q = entityManager.createQuery("SELECT p FROM Person p WHERE p.role = :role", Person.class);
+        q.setParameter("role", role);
+        List<Person> personList = q.getResultList();
+        return personList;
     }
 
     @Override
     public List<Person> findByName(String firstName, String secondName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Person> q = entityManager.createQuery("SELECT p FROM Person p WHERE p.firstName = :firstName AND p.secondName = :secondName", Person.class);
+        q.setParameter("firstName", firstName);
+        q.setParameter("secondName", secondName);
+        List<Person> personList = q.getResultList();
+        return personList;
     }
 
 }
