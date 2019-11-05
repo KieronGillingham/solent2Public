@@ -41,7 +41,7 @@ public class Appointment {
     private Integer durationMinutes;
     
     
-    public Integer getHr() {
+       public Integer getHr() {
         return hr;
     }
 
@@ -103,5 +103,7 @@ public class Appointment {
     public String toString() {
         return "Appointment{" + "descripton=" + descripton + ", personA=" + personA + ", personB=" + personB + ", id=" + id + ", hr=" + hr + ", mth=" + mth + ", yr=" + yr + ", durationMinutes=" + durationMinutes + '}';
     }
+
+
 
 }

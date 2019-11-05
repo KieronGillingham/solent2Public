@@ -52,17 +52,12 @@ public class PersonDAOJpaImpl implements PersonDAO {
 
     @Override
     public void deleteById(long id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(findById(id));
-        entityManager.getTransaction().commit();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Person delete(Person person) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(person);
-        entityManager.getTransaction().commit();
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -74,19 +69,12 @@ public class PersonDAOJpaImpl implements PersonDAO {
 
     @Override
     public List<Person> findByRole(Role role) {
-        TypedQuery<Person> q = entityManager.createQuery("SELECT p FROM Person p WHERE p.role = :role", Person.class);
-        q.setParameter("role", role);
-        List<Person> personList = q.getResultList();
-        return personList;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Person> findByName(String firstName, String secondName) {
-        TypedQuery<Person> q = entityManager.createQuery("SELECT p FROM Person p WHERE p.firstName = :firstName AND p.secondName = :secondName", Person.class);
-        q.setParameter("firstName", firstName);
-        q.setParameter("secondName", secondName);
-        List<Person> personList = q.getResultList();
-        return personList;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
