@@ -1,0 +1,9 @@
+Primary actors - Engage with the system - Should be placed on the left
+Secondary actors - React to the Primary actors - On the right
+
+Use cases should be placed top-to-bottom in the order they would occour (where possible)
+
+Association - Basic interaction
+Include - Executed alongside the base case (i.e. log_in --Includes--> check_password)
+Extend - Executed with the base case, but only sometimes. It depends on other critera, which don't need to be explicitly stated (arrow points back towards the base)
+Generalization - Inheritance - Elbow connector - Used when multiple use cases can be share the same relationships. Parent/Children
