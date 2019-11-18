@@ -15,7 +15,7 @@
 
     // used to set html header autoload time. This automatically refreshes the page
     // Set refresh, autoload time every 20 seconds
-    response.setIntHeader("Refresh", 20);
+    // response.setIntHeader("Refresh", 20);
 
     FarmFacade farmFacade = (FarmFacade) WebObjectFactory.getServiceFacade();
 

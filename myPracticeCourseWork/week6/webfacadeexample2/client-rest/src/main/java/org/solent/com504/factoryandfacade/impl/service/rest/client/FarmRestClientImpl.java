@@ -32,8 +32,11 @@ public class FarmRestClientImpl implements FarmFacade {
 
     final static Logger LOG = LogManager.getLogger(FarmRestClientImpl.class);
 
-    String baseUrl = "http://localhost:8084/basicfacadeweb/rest/farmService";
-
+    // Test at Uni !!
+    // String baseUrl = "http://localhost:8084/basicfacadeweb/rest/farmService";
+    
+    // Works on own set-up
+    String baseUrl = "http://localhost:8080/basicfacadeweb/rest/farmService";
     public FarmRestClientImpl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
@@ -42,13 +45,16 @@ public class FarmRestClientImpl implements FarmFacade {
     public List<Animal> getAllAnimals() {
         LOG.debug("getAllAnimals Called");
         List<Animal> animalList = null;
-
+        LOG.debug("Build client:");
         Client client = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
+        LOG.debug("Get target path:");
         WebTarget webTarget = client.target(baseUrl).path("getAllAnimals");
-
+        LOG.debug("Build request:");
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
+        LOG.debug("Get response through invocation builder:");
         Response response = invocationBuilder.get();
-
+        
+        LOG.debug("Get reply:");
         ReplyMessage replyMessage = response.readEntity(ReplyMessage.class);
         LOG.debug("Response status=" + response.getStatus() + " ReplyMessage: " + replyMessage);
 
