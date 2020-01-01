@@ -21,10 +21,10 @@ public class ClientObjectFactoryImpl implements ServiceObjectFactory {
     private FarmFacade farmFacade = null;
     
     // Test at Uni !!
-    // private String baseUrl = "http://localhost:8084/basicfacadeweb/rest/farmService";
+    private String baseUrl = "http://localhost:8084/basicfacadeweb/rest/farmService";
     
     // Works on own set-up
-    private String baseUrl = "http://localhost:8080/basicfacadeweb/rest/farmService";
+    // private String baseUrl = "http://localhost:8080/basicfacadeweb/rest/farmService";
     @Override
     public FarmFacade getFarmFacade() {
         

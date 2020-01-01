@@ -23,13 +23,11 @@ public class WebObjectFactory {
     private static FarmFacade farmFacade = null;
 
     public static FarmFacade getServiceFacade() {
-        if (farmFacade == null) {
-            synchronized (WebObjectFactory.class) {
-                if (farmFacade == null) {
-                    LOG.debug("client web application starting");
-                    ServiceObjectFactory clientObjectFactory = new ClientObjectFactoryImpl();
-                    farmFacade = clientObjectFactory.getFarmFacade();
-                }
+        synchronized (WebObjectFactory.class) {
+            if (farmFacade == null) {
+                LOG.debug("client web application starting");
+                ServiceObjectFactory clientObjectFactory = new ClientObjectFactoryImpl();
+                farmFacade = clientObjectFactory.getFarmFacade();
             }
         }
         return farmFacade;

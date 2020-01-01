@@ -33,10 +33,8 @@ public class FarmRestClientImpl implements FarmFacade {
     final static Logger LOG = LogManager.getLogger(FarmRestClientImpl.class);
 
     // Test at Uni !!
-    // String baseUrl = "http://localhost:8084/basicfacadeweb/rest/farmService";
+    String baseUrl = "http://localhost:8084/basicfacadeweb/rest/farmService";
     
-    // Works on own set-up
-    String baseUrl = "http://localhost:8080/basicfacadeweb/rest/farmService";
     public FarmRestClientImpl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
